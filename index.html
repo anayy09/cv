@@ -16,69 +16,53 @@
 
         .center-frame {
             display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: auto;
+            height: 100%;
         }
 
-        canvas {
-            max-width: 100%;
-            height: auto;
-            margin: auto;
+        iframe {
+            width: 100%;
+            /* Adjust width as needed */
+            height: 100vh;
+            /* Adjust to the height of the viewport */
+            border: none;
+            /* Removes the border around the iframe */
+        }
+
+        .mobile-image {
+            width: 100%;
+            display: none;
+            margin-top: 10px;
+            /* Add space between images */
+        }
+
+        @media screen and (max-width: 768px) {
+            iframe {
+                display: none;
+                /* Hide iframe on mobile devices */
+            }
+
+            .mobile-image {
+                display: block;
+                /* Show images on mobile devices */
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>Resume Preview</h1>
     <div class="center-frame">
-        <canvas id="the-canvas"></canvas>
+        <!-- Desktop PDF viewer -->
+        <iframe src="Resume_Anay_Sinhal.pdf#toolbar=0" type="application/pdf">
+            <p>Your browser does not support iframes.</p>
+        </iframe>
+        <!-- Mobile images -->
+        <img src="Resume_Anay_Sinhal_01.jpg" class="mobile-image" alt="Resume Page 1">
+        <img src="Resume_Anay_Sinhal_02.jpg" class="mobile-image" alt="Resume Page 2">
     </div>
-
-    <script src="//mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
-    <script type="module">
-        var url = 'Resume_Anay_Sinhal.pdf'; // Update this path to where your PDF is located
-
-        // Loaded via <script> tag, create shortcut to access PDF.js exports.
-        var { pdfjsLib } = globalThis;
-
-        // The workerSrc property shall be specified.
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.mjs';
-
-        // Asynchronous download of PDF
-        var loadingTask = pdfjsLib.getDocument(url);
-        loadingTask.promise.then(function (pdf) {
-            console.log('PDF loaded');
-
-            // Fetch the first page
-            pdf.getPage(1).then(function (page) {
-                console.log('Page loaded');
-
-                var scale = 1.5; // Adjust scale as needed to fit the canvas or screen size
-                var viewport = page.getViewport({ scale: scale });
-
-                // Prepare canvas using PDF page dimensions
-                var canvas = document.getElementById('the-canvas');
-                var context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                // Render PDF page into canvas context
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                var renderTask = page.render(renderContext);
-                renderTask.promise.then(function () {
-                    console.log('Page rendered');
-                });
-            });
-        }, function (reason) {
-            // PDF loading error
-            console.error(reason);
-        });
-    </script>
 </body>
 
 </html>
