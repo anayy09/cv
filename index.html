@@ -5,38 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Anay Sinhal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body,
         html {
             margin: 0;
             padding: 0;
-            height: 100%;
             background: white;
+            font-family: 'Poppins', sans-serif;
         }
 
         .center-frame {
             display: flex;
             flex-direction: column;
-            /* Stack children vertically */
             justify-content: center;
             align-items: center;
-            height: 100%;
+            min-height: 100vh;
         }
 
         iframe {
             width: 100%;
-            /* Adjust width as needed */
             height: 100vh;
-            /* Adjust to the height of the viewport */
             border: none;
-            /* Removes the border around the iframe */
         }
 
         .mobile-image {
             width: 100%;
+            height: auto;
             display: none;
-            margin-top: 10px;
-            /* Add space between images */
+            object-fit: contain;
+        }
+
+        .download-button {
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            padding: 8px 16px;
+            /* Smaller padding */
+            font-size: 0.9rem;
+            /* Smaller font size */
+            border: none;
+            border-radius: 20px;
+            background-color: rgb(25, 118, 210);
+            color: white;
+            cursor: pointer;
+            outline: none;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-button i {
+            margin-right: 5px;
         }
 
         @media screen and (max-width: 768px) {
@@ -54,10 +79,13 @@
 </head>
 
 <body>
+    <!-- Download button -->
+    <a href="Resume_Anay_Sinhal.pdf" class="download-button" download="Anay_Sinhal_Resume.pdf">
+        <i class="fa fa-download"></i>Download
+    </a>
     <div class="center-frame">
         <!-- Desktop PDF viewer -->
         <iframe src="Resume_Anay_Sinhal.pdf#toolbar=0" type="application/pdf">
-            <p>Your browser does not support iframes.</p>
         </iframe>
         <!-- Mobile images -->
         <img src="Resume_Anay_Sinhal_01.jpg" class="mobile-image" alt="Resume Page 1">
