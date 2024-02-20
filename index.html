@@ -35,15 +35,17 @@
             height: auto;
             display: none;
             object-fit: contain;
+            pointer-events: none;
+            /* Disable pointer events like long press */
         }
 
         .download-button {
             font-family: 'Poppins', sans-serif;
             text-decoration: none;
-            padding: 8px 16px;
-            /* Smaller padding */
-            font-size: 0.9rem;
-            /* Smaller font size */
+            padding: 6px 12px;
+            /* Even smaller padding */
+            font-size: 0.8rem;
+            /* Even smaller font size */
             border: none;
             border-radius: 20px;
             background-color: rgb(25, 118, 210);
@@ -67,12 +69,10 @@
         @media screen and (max-width: 768px) {
             iframe {
                 display: none;
-                /* Hide iframe on mobile devices */
             }
 
             .mobile-image {
                 display: block;
-                /* Show images on mobile devices */
             }
         }
     </style>
@@ -91,6 +91,13 @@
         <img src="Resume_Anay_Sinhal_01.jpg" class="mobile-image" alt="Resume Page 1">
         <img src="Resume_Anay_Sinhal_02.jpg" class="mobile-image" alt="Resume Page 2">
     </div>
+
+    <script>
+        // Scroll to the top of the page on load
+        window.onload = function () {
+            window.scrollTo(0, 0);
+        };
+    </script>
 </body>
 
 </html>
